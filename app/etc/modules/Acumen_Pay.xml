@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Acumen_Pay>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Acumen_Pay>
+    </modules>
+</config> 
