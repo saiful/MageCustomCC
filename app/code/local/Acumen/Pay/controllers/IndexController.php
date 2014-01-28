@@ -42,9 +42,9 @@ class Acumen_Pay_IndexController extends Mage_Core_Controller_Front_Action
 				}
 					
 				$payment->setTransactionId($tid)
-				->setPreparedMessage("Payment Sucessfull Result:")
-				->setIsTransactionClosed(0)
-				->registerAuthorizationNotification($grandTotal);
+					->setPreparedMessage("Payment Sucessful Result:")
+					->setIsTransactionClosed(0)
+					->registerAuthorizationNotification($grandTotal);
 				$order->save();
 
 				try {

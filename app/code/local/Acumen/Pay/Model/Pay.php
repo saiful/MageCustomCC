@@ -109,7 +109,8 @@ class Acumen_Pay_Model_Pay extends Mage_Payment_Model_Method_Cc {
     }
     
     /**
-     * @param (type) This string can be used to tell the API
+     *
+     *  @param (type) This string can be used to tell the API
      *               if the call is for Sale or Authorization
      */
     private function callApi(Varien_Object $payment, $amount, $type = "")
@@ -123,14 +124,19 @@ class Acumen_Pay_Model_Pay extends Mage_Payment_Model_Method_Cc {
 		    $street           = $billingAddress->getStreet(1);
 		    $postcode         = $billingAddress->getPostcode();
 		    $cscCode          = $payment->getCcCid();
+
+            $approved = false;
 		    
             // This is where you would make your cURL call (or whatever)
             // to your payment processing provider, such as Paytrace.
 
-            // If the transaction or authorization was successful,
-            // return true. If not, return false.
+            if ($approved == true) { // 
+                return array( 'status' => 1, 'transaction_id' => time(), 'fraud' => 0 );
+            } else { 
+                return array( 'status' => 0, 'transaction_id' => time(), 'fraud' => 0 );
+            }
         } else {
-            $error = Mage::helper('paytrace')->__('Invalid amount for authorization.');
+            $error = Mage::helper('pay')->__('Invalid amount for authorization.');
 			return array( 'status' => 0, 'transaction_id' => time(), 'fraud' => 0 );
         }
     }
